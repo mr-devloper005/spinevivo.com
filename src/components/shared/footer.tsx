@@ -23,16 +23,12 @@ const footerLinks = {
     { name: 'Company', href: '/company' },
     { name: 'Business Listings', href: '/listings' },
     { name: 'About', href: '/about' },
-    { name: 'Team', href: '/team' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Press', href: '/press' },
   ],
   resources: [
     { name: 'Help Center', href: '/help' },
     { name: 'Community', href: '/community' },
     { name: 'Developers', href: '/developers' },
-    { name: 'Status', href: '/status' },
   ],
   legal: [
     { name: 'Privacy', href: '/privacy' },
