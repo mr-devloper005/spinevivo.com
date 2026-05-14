@@ -1,56 +1,84 @@
-import { Mail, MessageSquareText, ShieldCheck } from 'lucide-react';
+import { Building2, Mail, MapPin, Phone } from 'lucide-react'
+import { NavbarShell } from '@/components/shared/navbar-shell'
+import { Footer } from '@/components/shared/footer'
+import { SITE_CONFIG } from '@/lib/site-config'
+import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
+import { ContactLeadForm } from "@/components/shared/contact-lead-form";
 
-import { ContactLeadForm } from '@/components/shared/contact-lead-form';
-import { Footer } from '@/components/shared/footer';
-import { NavbarShell } from '@/components/shared/navbar-shell';
+const tone = {
+  shell: 'bg-[#f8fbff] text-slate-950',
+  panel: 'border border-slate-200 bg-white',
+  soft: 'border border-slate-200 bg-slate-50',
+  muted: 'text-slate-600',
+  action: 'bg-slate-950 text-white hover:bg-slate-800',
+}
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Spine Vivo';
-
-const contactHighlights = [
-  { icon: Mail, title: 'Direct response', copy: 'Your message is saved securely and routed to the right team.' },
-  { icon: MessageSquareText, title: 'Clear details', copy: 'Share your requirement, question, or collaboration idea in one place.' },
-  { icon: ShieldCheck, title: 'Reliable follow-up', copy: 'We keep the request record so every conversation stays traceable.' },
-];
+const lanes = [
+  {
+    icon: Building2,
+    title: 'Business onboarding',
+    body: 'Create or claim your listing, verify contact details, and publish complete business information quickly.',
+  },
+  {
+    icon: Phone,
+    title: 'Owner support',
+    body: 'Need help with listing edits, duplicate pages, or profile visibility? Our team can guide the next steps.',
+  },
+  {
+    icon: MapPin,
+    title: 'Coverage requests',
+    body: 'Tell us which neighborhood, city, or category should be added to improve local discovery.',
+  },
+]
 
 export default function ContactPage() {
+  if (CONTACT_PAGE_OVERRIDE_ENABLED) {
+    return <ContactPageOverride />
+  }
+
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || 'support@example.com'
+  const contactEmailHref = `mailto:${contactEmail}`
+
   return (
-    <div className="min-h-screen bg-[#f7f1e8] text-stone-950">
+    <div className={`min-h-screen ${tone.shell}`}>
       <NavbarShell />
-      <main>
-        <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-16">
-          <div className="absolute left-[-10%] top-10 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl" />
-          <div className="absolute bottom-0 right-[-8%] h-80 w-80 rounded-full bg-stone-300/50 blur-3xl" />
-
-          <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.35em] text-stone-500">Contact</p>
-              <h1 className="mt-5 max-w-3xl text-5xl font-black leading-[0.95] tracking-[-0.06em] text-stone-950 md:text-7xl">
-                Let&apos;s talk about your next move.
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Use this form to reach {siteName}. Your request will be recorded and shared with the support team for follow-up.
-              </p>
-
-              <div className="mt-8 grid gap-4">
-                {contactHighlights.map((item) => (
-                  <div key={item.title} className="flex gap-4 rounded-3xl border border-stone-200 bg-white/60 p-5 shadow-sm">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-950 text-white">
-                      <item.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h2 className="text-base font-black text-stone-950">{item.title}</h2>
-                      <p className="mt-1 text-sm leading-6 text-stone-600">{item.copy}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Contact {SITE_CONFIG.name}</p>
+            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">Business listing support, routed to the right team.</h1>
+            <p className={`mt-5 max-w-2xl text-sm leading-8 ${tone.muted}`}>
+              Share what you need for your listing or local directory coverage. We will route your message to onboarding,
+              verification, or operations without sending you through generic support loops.
+            </p>
+            <div className="mt-8 space-y-4">
+              {lanes.map((lane) => (
+                <div key={lane.title} className={`rounded-[1.6rem] p-5 ${tone.soft}`}>
+                  <lane.icon className="h-5 w-5" />
+                  <h2 className="mt-3 text-xl font-semibold">{lane.title}</h2>
+                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{lane.body}</p>
+                </div>
+              ))}
             </div>
+          </div>
 
+          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-2xl font-semibold">Send a message</h2>
+              <a
+                href={contactEmailHref}
+                className={`inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold ${tone.action}`}
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                Email us
+              </a>
+            </div>
+            <p className={`mt-3 text-sm ${tone.muted}`}>{contactEmail}</p>
             <ContactLeadForm />
           </div>
         </section>
       </main>
       <Footer />
     </div>
-  );
+  )
 }
