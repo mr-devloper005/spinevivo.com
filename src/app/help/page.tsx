@@ -29,15 +29,10 @@ export default function HelpPage() {
       title="Help Center"
       description="Guides for neighbors discovering care and movement studios, plus owners managing live profiles."
       actions={
-        <>
-          <Link href="/status" className={dirSurface.ctaOutline}>
-            System status
-          </Link>
-          <Link href="/contact" className={dirSurface.cta}>
-            Contact support
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </>
+        <Link href="/contact" className={dirSurface.cta}>
+          Contact support
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
       }
     >
       <div className="grid gap-6 md:grid-cols-3">

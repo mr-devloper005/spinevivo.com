@@ -17,9 +17,6 @@ const nextConfig = {
       { protocol: "http", hostname: "**" },
     ],
   },
-  turbopack: {
-    root: __dirname,
-  },
   async redirects() {
     return [
       { source: '/listings', destination: '/listing', permanent: true },

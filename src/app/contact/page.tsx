@@ -1,4 +1,4 @@
-import { Building2, Mail, MapPin, Phone } from 'lucide-react'
+import { Building2, MapPin, Phone } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
@@ -16,18 +16,18 @@ const tone = {
 const lanes = [
   {
     icon: Building2,
-    title: 'Business onboarding',
-    body: 'Create or claim your listing, verify contact details, and publish complete business information quickly.',
+    title: 'List your business',
+    body: 'Create your listing, add photos and hours, and get discovered by local customers searching for what you offer.',
   },
   {
     icon: Phone,
-    title: 'Owner support',
-    body: 'Need help with listing edits, duplicate pages, or profile visibility? Our team can guide the next steps.',
+    title: 'Support',
+    body: 'Questions about your listing, account, or how to improve your visibility? We are here to help.',
   },
   {
     icon: MapPin,
-    title: 'Coverage requests',
-    body: 'Tell us which neighborhood, city, or category should be added to improve local discovery.',
+    title: 'Suggestions',
+    body: 'Tell us which businesses, categories, or features you would like to see added to the directory.',
   },
 ]
 
@@ -35,9 +35,6 @@ export default function ContactPage() {
   if (CONTACT_PAGE_OVERRIDE_ENABLED) {
     return <ContactPageOverride />
   }
-
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || 'support@example.com'
-  const contactEmailHref = `mailto:${contactEmail}`
 
   return (
     <div className={`min-h-screen ${tone.shell}`}>
@@ -63,6 +60,14 @@ export default function ContactPage() {
           </div>
 
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
+            <h2 className="text-2xl font-semibold">Send a message</h2>
+            <form className="mt-6 grid gap-4">
+              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
+              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
+              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Business name or listing URL" />
+              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Describe the issue or request in detail so we can help faster." />
+              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
+            </form>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-2xl font-semibold">Send a message</h2>
               <a

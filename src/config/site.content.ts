@@ -2,10 +2,10 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Business listing platform',
+    tagline: 'Business listing and local discovery',
   },
   footer: {
-    tagline: 'Listings, offers, and structured business discovery',
+    tagline: 'Business listing and local discovery',
   },
   hero: {
     badge: 'Business discovery directory',
