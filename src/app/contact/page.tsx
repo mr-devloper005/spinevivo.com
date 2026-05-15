@@ -3,6 +3,7 @@ import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
+import { ContactLeadForm } from "@/components/shared/contact-lead-form";
 
 const tone = {
   shell: 'bg-[#f8fbff] text-slate-950',
@@ -67,6 +68,18 @@ export default function ContactPage() {
               <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Describe the issue or request in detail so we can help faster." />
               <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
             </form>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-2xl font-semibold">Send a message</h2>
+              <a
+                href={contactEmailHref}
+                className={`inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold ${tone.action}`}
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                Email us
+              </a>
+            </div>
+            <p className={`mt-3 text-sm ${tone.muted}`}>{contactEmail}</p>
+            <ContactLeadForm />
           </div>
         </section>
       </main>
