@@ -6,8 +6,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json ./
+RUN pnpm install --no-frozen-lockfile
 
 FROM base AS builder
 ARG NEXT_PUBLIC_MASTER_PANEL_URL
