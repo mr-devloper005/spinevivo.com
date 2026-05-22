@@ -1,4 +1,4 @@
-import { Building2, MapPin, Phone } from 'lucide-react'
+import { Building2, Mail, MapPin, Phone } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
@@ -35,6 +35,9 @@ export default function ContactPage() {
   if (CONTACT_PAGE_OVERRIDE_ENABLED) {
     return <ContactPageOverride />
   }
+
+  const contactEmail = `hello@${SITE_CONFIG.domain}`
+  const contactEmailHref = `mailto:${contactEmail}`
 
   return (
     <div className={`min-h-screen ${tone.shell}`}>
