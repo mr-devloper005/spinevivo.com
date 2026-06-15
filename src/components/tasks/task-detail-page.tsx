@@ -270,11 +270,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                       <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
                         {post.title}
                       </h1>
-                      {articleSummary ? (
-                        <p className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-                          {articleSummary}
-                        </p>
-                      ) : null}
                       <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                         <span className="rounded-full border border-border bg-background px-3 py-1">
                           Written by {articleAuthor}
